@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor // injeção de dependência da AgendamentoRepository
@@ -20,6 +21,15 @@ public class AgendamentoService {
         LocalDateTime horaAgendamento = agendamento.getDataHoraAgendamento();
 
         LocalDateTime horaFim = agendamento.getDataHoraAgendamento().plusHours((Long) agendamento.getQuantidadeHoraServico());
+
+       Agendamento agendados = agendamentoRepository.findByServicoAndDataHoraAgendamentoBetween(agendamento.getServico(), horaAgendamento, horaFim);
+
+       if(Objects.nonNull(agendados)){
+           throw new RuntimeException("O horário já está preenchido");
+       }
+
+       return agendamentoRepository.save(agendamento);
+
 
     }
 
