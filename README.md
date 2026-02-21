@@ -140,3 +140,17 @@ cliente: Felipe
 - **CRUD completo**
 - **Separação de responsabilidades**
 - **Organização de código para manutenção futura**
+
+---
+
+## 📄 Licença
+
+Este projeto é livre para uso educacional e pessoal.
+
+---
+
+## ✨ Autor
+
+Desenvolvido por **Tulio Bastos** 💻🚀
+
+Se gostou do projeto, deixe uma ⭐ no repositório!
