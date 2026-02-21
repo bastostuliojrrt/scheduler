@@ -4,8 +4,6 @@ import com.javaspring.scheduler.infrastructure.entity.Agendamento;
 import com.javaspring.scheduler.infrastructure.repository.AgendamentoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
