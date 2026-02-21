@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "agendamento")
 
+// Tabela Agendamento
 public class Agendamento {
 
     // Configuração para geração automática do ID
