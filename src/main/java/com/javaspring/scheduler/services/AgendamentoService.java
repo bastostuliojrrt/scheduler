@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -22,7 +23,7 @@ public class AgendamentoService {
 
         LocalDateTime horaAgendamento = agendamento.getDataHoraAgendamento();
 
-        LocalDateTime horaFim = agendamento.getDataHoraAgendamento().plusHours((Long) agendamento.getQuantidadeHoraServico());
+        LocalDateTime horaFim = agendamento.getDataHoraAgendamento().plusHours(agendamento.getQuantidadeHoraServico());
 
        Agendamento agendados = agendamentoRepository.findByServicoAndDataHoraAgendamentoBetween(agendamento.getServico(), horaAgendamento, horaFim);
 
@@ -37,12 +38,18 @@ public class AgendamentoService {
     // Método para deleção de agendamentos
     public void deletarAgendamento(LocalDateTime dataHoraAgendamento, String cliente){
 
+        Agendamento agendamentoCliente = agendamentoRepository.findByDataHoraAgendamentoAndCliente(dataHoraAgendamento, cliente);
+
+        if (Objects.isNull(agendamentoCliente)){
+            throw new RuntimeException("Não existe agendamento nesse horário.");
+        }
+
         agendamentoRepository.deleteByDataHoraAgendamentoAndCliente(dataHoraAgendamento, cliente);
 
     }
 
     // Método para buscar os agendamentos do dia
-    public Agendamento buscarAgendamentosDoDia(LocalDate data){
+    public List<Agendamento> buscarAgendamentosDoDia(LocalDate data){
         LocalDateTime primeiraHoraDia = data.atStartOfDay();
         LocalDateTime horaFinalDia = data.atTime(23, 59, 59);
 
