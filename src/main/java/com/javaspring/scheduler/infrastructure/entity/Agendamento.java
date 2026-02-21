@@ -22,8 +22,8 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Number quantidadeHoraServico;
     private String servico, profissional, cliente, telefoneCliente;
+    private Long quantidadeHoraServico;
     private LocalDateTime dataHoraAgendamento;
     private LocalDateTime dataInsercao = LocalDateTime.now();
 
