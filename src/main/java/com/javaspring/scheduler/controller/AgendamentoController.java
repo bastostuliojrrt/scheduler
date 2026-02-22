@@ -23,9 +23,9 @@ public class AgendamentoController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarAgendamento(@RequestParam LocalDateTime dataHoraAgendamento, @RequestParam String cliente){
+    public ResponseEntity<List<Agendamento>> deletarAgendamento(@RequestParam LocalDateTime dataHoraAgendamento, @RequestParam String cliente){
         agendamentoService.deletarAgendamento(dataHoraAgendamento, cliente);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(agendamentoService.listarTodosAgendamentos());
     }
 
     @GetMapping
