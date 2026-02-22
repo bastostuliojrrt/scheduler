@@ -56,6 +56,10 @@ public class AgendamentoService {
         return agendamentoRepository.findByDataHoraAgendamentoBetween(primeiraHoraDia, horaFinalDia);
     }
 
+    public List<Agendamento> listarTodosAgendamentos(){
+        return agendamentoRepository.findAll();
+    }
+
     // Alteração de agendamento por cliente
     public Agendamento alterarAgendamento(Agendamento agendamento, LocalDateTime dataHoraAgendamento, String cliente){
 
